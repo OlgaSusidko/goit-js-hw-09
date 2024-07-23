@@ -1,3 +1,5 @@
+import "../css/2-form.css"
+
 const STORAGE_KEY = "feedback-form-state";
 
 let formData = {
@@ -27,15 +29,14 @@ function handleFormSubmit(event){
 
   localStorage.removeItem(STORAGE_KEY);
 
-  event.currentTarget.reset();
+  formData = { email: '', message: '' };
+  form.reset();
 }
 
 function handleFormInput(event) {
   const value = event.target.value.trim();
   const key = event.target.name;
   formData[key] = value;
-
-  console.log(formData)
   
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(formData)) } catch (err) {
     console.log(err);
